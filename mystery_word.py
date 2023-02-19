@@ -23,13 +23,13 @@ def play_game():
         guess_made = input("Guess a letter! ").lower()
         print('guess_made: ', guess_made)
         if guess_made in wrong_guesses:
-            print('Try again!')
+            print('You already guessed that. Try again!')
             guesses_remaining += 0 
         elif guess_made in underscores:
             print('You already guessed that. Try again!')
             guesses_remaining += 0
         elif guess_made in word:
-            guesses_remaining -= 1
+            guesses_remaining += 0
             for i in range(len(word)):
                 if guess_made == word[i]:
                     underscores[i] = guess_made
@@ -45,7 +45,11 @@ def play_game():
         if guesses_remaining == 0:
             print('Out of guesses! The word was ', ' '.join(word))
             break
-        
+    play_again = input('Would you like to play again? Y/N ')
+    if play_again == 'Y':
+        play_game()
+    else:
+        return
 
 
 
