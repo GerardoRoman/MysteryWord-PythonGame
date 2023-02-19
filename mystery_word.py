@@ -9,14 +9,57 @@ def open_file(file):
         random_word_list = list(random_word)
         blanks = [' _ '] * len(random_word)
     return random_word_list, blanks
+# print(open_file('words.txt'))
 
-print(open_file('words.txt'))
+def play_game():
+    word, underscores = open_file('words.txt')
+    print(f''' Welcome to Mystery Word Game!
+        The secret word has {len(word)} letters.
+        Your current guess: {' '.join(underscores)}''')
+    wrong_guesses = []
+    guesses_remaining = 8
+    while guesses_remaining > 0:
+        guess_made = input("Guess a letter! ").upper()
+        print('guess_made: ', guess_made)
+        if guess_made in wrong_guesses:
+            print('Try again!')
+            guesses_remaining += 0 
+        elif guess_made in underscores:
+            print('You already guessed that. Try again!')
+            guesses_remaining += 0
+        elif guess_made in word:
+            guesses_remaining -= 1
+            for i in range(len(word)):
+                if guess_made == word[i]:
+                    underscores[i] = guess_made
+        else:
+            wrong_guesses.append(guess_made)
+            guesses_remaining -= 1
+        print('Answer: ', ' '.join(underscores))
+        print('Wrong guesses: ', wrong_guesses)
+        print('Guesses remaining: ', guesses_remaining)
+        if underscores == word:
+            print('You win! The word is: ', ' '.join(word))
+            break
+        if guesses_remaining == 0:
+            print('Out of guesses! The word was ', ' '.join(word))
+            break
+        
 
-def choose_random_word(list):
-    word = random.choice(list)
-    return word
 
-# def play_game():
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # EXAMPLE FROM CLASS::
