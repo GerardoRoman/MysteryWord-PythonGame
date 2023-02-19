@@ -11,6 +11,7 @@ def open_file(file):
     return random_word_list, blanks
 # print(open_file('words.txt'))
 
+
 def play_game():
     word, underscores = open_file('words.txt')
     print(f''' Welcome to Mystery Word Game!
@@ -19,7 +20,7 @@ def play_game():
     wrong_guesses = []
     guesses_remaining = 8
     while guesses_remaining > 0:
-        guess_made = input("Guess a letter! ").upper()
+        guess_made = input("Guess a letter! ").lower()
         print('guess_made: ', guess_made)
         if guess_made in wrong_guesses:
             print('Try again!')
