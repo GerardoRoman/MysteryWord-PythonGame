@@ -14,34 +14,35 @@ def open_file(file):
 
 def play_game():
     word, underscores = open_file('words.txt')
-    print(f''' Welcome to Mystery Word Game!
-        The secret word has {len(word)} letters.
-        Your current guess: {' '.join(underscores)}''')
+    print(f'''Welcome to Mystery Word Game!
+The secret word has {len(word)} letters.
+Your current guess: {' '.join(underscores)}''')
     wrong_guesses = []
     guesses_remaining = 8
     while guesses_remaining > 0:
         guess_made = input("Guess a letter! ").lower()
-        print('guess_made: ', guess_made)
-        if guess_made in wrong_guesses:
+        print('Your guess: ', guess_made)
+        if guess_made in underscores:
             print('You already guessed that. Try again!')
-            guesses_remaining += 0 
-        elif guess_made in underscores:
+            # guesses_remaining += 0
+        elif guess_made in wrong_guesses:
             print('You already guessed that. Try again!')
-            guesses_remaining += 0
+            # guesses_remaining += 0
         elif guess_made in word:
-            guesses_remaining += 0
+            # guesses_remaining += 0
             for i in range(len(word)):
                 if guess_made == word[i]:
                     underscores[i] = guess_made
         else:
             wrong_guesses.append(guess_made)
             guesses_remaining -= 1
-        print('Answer: ', ' '.join(underscores))
-        print('Wrong guesses: ', wrong_guesses)
+        print('The mystery word is: ', ' '.join(underscores))
         print('Guesses remaining: ', guesses_remaining)
+        print('Wrong guesses: ', wrong_guesses)
         if underscores == word:
             print('You win! The word is: ', ' '.join(word))
             break
+        # if user loses
         if guesses_remaining == 0:
             print('Out of guesses! The word was ', ' '.join(word))
             break
@@ -50,21 +51,6 @@ def play_game():
         play_game()
     else:
         return
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # EXAMPLE FROM CLASS::
